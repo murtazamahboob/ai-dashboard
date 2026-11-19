@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Dashboard — Live Churn Model, Animated Charts &amp; Dark Mode</title>
+<meta name="description" content="An offline AI dashboard: a neural network trained from scratch predicts customer churn live in your browser, with animated training charts, ROC curve, confusion matrix and dark mode. No server, no API key, no network.">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="topbar">
+  <div>
+    <h1>AI Dashboard</h1>
+    <p class="subtitle">Customer-churn model &middot; live inference in your browser &middot; fully offline</p>
+  </div>
+  <div class="top-actions">
+    <span id="model-badge" class="badge">model: loading&hellip;</span>
+    <button id="theme-toggle" type="button" aria-label="Toggle dark and light mode">&#9790; Dark</button>
+    <button id="live-toggle" type="button" aria-pressed="true">⏸ Pause live feed</button>
+  </div>
+</header>
+
+<main>
+  <section class="kpis" aria-label="Key metrics">
+    <article class="card kpi"><span class="kpi-label">Test accuracy</span><span class="kpi-value" id="kpi-accuracy">&mdash;</span><span class="kpi-sub" id="kpi-accuracy-sub"></span></article>
+    <article class="card kpi"><span class="kpi-label">ROC AUC</span><span class="kpi-value" id="kpi-auc">&mdash;</span><span class="kpi-sub">1.0 is perfect</span></article>
+    <article class="card kpi"><span class="kpi-label">Precision / Recall</span><span class="kpi-value" id="kpi-pr">&mdash;</span><span class="kpi-sub" id="kpi-f1"></span></article>
+    <article class="card kpi"><span class="kpi-label">Churn rate</span><span class="kpi-value" id="kpi-churn">&mdash;</span><span class="kpi-sub" id="kpi-rows"></span></article>
+    <article class="card kpi"><span class="kpi-label">Live latency</span><span class="kpi-value" id="kpi-latency">&mdash;</span><span class="kpi-sub">in-browser inference</span></article>
+  </section>
+
+  <section class="grid">
+    <article class="card chart-card">
+      <h2>Training — loss &amp; accuracy</h2>
+      <p class="hint">Animated replay of the 60-epoch training run. Loss falls, accuracy climbs.</p>
+      <canvas id="chart-training" width="640" height="260" aria-label="Training loss and accuracy chart"></canvas>
+      <div class="legend"><span><i class="swatch loss"></i>loss</span><span><i class="swatch acc"></i>accuracy</span></div>
+      <button id="replay-training" type="button">↻ Replay training animation</button>
+    </article>
+
+    <article class="card chart-card">
+      <h2>ROC curve</h2>
+      <p class="hint">True-positive rate vs false-positive rate across thresholds.</p>
+      <canvas id="chart-roc" width="640" height="260" aria-label="ROC curve chart"></canvas>
+      <p class="chart-note" id="roc-note"></p>
+    </article>
+
+    <article class="card">
+      <h2>Confusion matrix</h2>
+      <p class="hint">Test set, threshold 0.5. Darker = more customers.</p>
+      <div class="confusion" id="confusion"></div>
+      <p class="chart-note" id="confusion-note"></p>
+    </article>
+
+    <article class="card chart-card">
+      <h2>What drives churn?</h2>
+      <p class="hint">Permutation importance — accuracy lost when a feature is shuffled.</p>
+      <canvas id="chart-importance" width="640" height="260" aria-label="Feature importance chart"></canvas>
+    </article>
+  </section>
+
+  <section class="grid">
+    <article class="card playground">
+      <h2>Live inference playground</h2>
+      <p class="hint">Move the sliders — the same neural network that was trained in Python runs here, in your browser, and scores the customer instantly. No data leaves this page.</p>
+      <div class="sliders" id="sliders"></div>
+      <div class="verdict" id="verdict">
+        <span class="verdict-label">Churn probability</span>
+        <span class="verdict-value" id="verdict-value">&mdash;</span>
+        <div class="meter"><div class="meter-fill" id="meter-fill"></div></div>
+        <span class="verdict-text" id="verdict-text"></span>
+      </div>
+      <div class="presets">
+        <button type="button" data-preset="loyal">Loyal customer</button>
+        <button type="button" data-preset="atrisk">At-risk customer</button>
+        <button type="button" data-preset="new">New &amp; expensive</button>
+      </div>
+    </article>
+
+    <article class="card">
+      <h2>Live prediction feed</h2>
+      <p class="hint">Simulated stream of customers scored by the model, one per second.</p>
+      <ul class="feed" id="live-feed"></ul>
+      <canvas id="chart-latency" width="640" height="120" aria-label="Inference latency chart"></canvas>
+      <p class="chart-note">Latency is measured in your browser, per prediction.</p>
+    </article>
+  </section>
+
+  <section class="card about">
+    <h2>How this dashboard works</h2>
+    <ol>
+      <li><strong>Synthetic data, real signal.</strong> 2,000 customers are generated in Python from a known churn rule (tenure, charges, contract, support calls, usage, age, services) — no real customer data.</li>
+      <li><strong>Model trained from scratch.</strong> An 8&rarr;16&rarr;8&rarr;1 MLP in pure NumPy (Adam, 60 epochs) reaches the accuracy shown above. Its weights are exported to <code>web/data/weights.json</code>.</li>
+      <li><strong>Live inference in the browser.</strong> <code>web/js/model.js</code> runs the exact same forward pass in JavaScript — the Python and JS predictions agree to 1e-6, verified by the test suite.</li>
+      <li><strong>Charts drawn from scratch.</strong> Every chart is hand-drawn on <code>&lt;canvas&gt;</code> — no chart library, no CDN, no network requests at all.</li>
+    </ol>
+    <p class="hint">Open <code>web/index.html</code> directly in a browser, or serve the <code>web/</code> folder with any static server. Dark mode is the default; the toggle is remembered.</p>
+  </section>
+</main>
+
+<footer><p>AI Dashboard &middot; offline, open source (MIT) &middot; model: MLP 8&rarr;16&rarr;8&rarr;1, trained in NumPy, run live in JavaScript.</p></footer>
+
+<script src="js/model.js"></script>
+<script src="js/charts.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
