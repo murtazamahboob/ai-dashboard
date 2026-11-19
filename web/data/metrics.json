@@ -1,0 +1,329 @@
+{
+  "report": {
+    "accuracy": 0.845,
+    "precision": 0.8224,
+    "recall": 0.6718,
+    "f1": 0.7395,
+    "confusion": {
+      "tn": 250,
+      "fp": 19,
+      "fn": 43,
+      "tp": 88
+    }
+  },
+  "roc": {
+    "fpr": [
+      1.0,
+      0.5948,
+      0.4164,
+      0.2937,
+      0.2416,
+      0.197,
+      0.1673,
+      0.1375,
+      0.1301,
+      0.1264,
+      0.1041,
+      0.0855,
+      0.0706,
+      0.0595,
+      0.0595,
+      0.0483,
+      0.0372,
+      0.0372,
+      0.0335,
+      0.0297,
+      0.026,
+      0.026,
+      0.0186,
+      0.0037,
+      0.0
+    ],
+    "tpr": [
+      1.0,
+      0.9389,
+      0.9008,
+      0.8779,
+      0.8473,
+      0.8473,
+      0.8321,
+      0.8092,
+      0.8015,
+      0.7557,
+      0.7557,
+      0.7252,
+      0.6718,
+      0.6336,
+      0.626,
+      0.6183,
+      0.5878,
+      0.5878,
+      0.5802,
+      0.5573,
+      0.4885,
+      0.4504,
+      0.3435,
+      0.2366,
+      0.0
+    ],
+    "thresholds": [
+      0.0,
+      0.0417,
+      0.0833,
+      0.125,
+      0.1667,
+      0.2083,
+      0.25,
+      0.2917,
+      0.3333,
+      0.375,
+      0.4167,
+      0.4583,
+      0.5,
+      0.5417,
+      0.5833,
+      0.625,
+      0.6667,
+      0.7083,
+      0.75,
+      0.7917,
+      0.8333,
+      0.875,
+      0.9167,
+      0.9583,
+      1.0
+    ],
+    "auc": 0.8873
+  },
+  "importance": [
+    {
+      "feature": "support_calls",
+      "importance": 0.1225
+    },
+    {
+      "feature": "monthly_charges",
+      "importance": 0.1025
+    },
+    {
+      "feature": "tenure_months",
+      "importance": 0.0625
+    },
+    {
+      "feature": "contract_months",
+      "importance": 0.05
+    },
+    {
+      "feature": "data_usage_gb",
+      "importance": 0.0125
+    },
+    {
+      "feature": "num_services",
+      "importance": 0.0125
+    },
+    {
+      "feature": "age",
+      "importance": 0.0025
+    },
+    {
+      "feature": "total_charges",
+      "importance": -0.005
+    }
+  ],
+  "live_rows": [
+    {
+      "customer": "C-1250",
+      "features": {
+        "tenure_months": 18.7,
+        "monthly_charges": 113.1,
+        "total_charges": 2064.5,
+        "contract_months": 24.0,
+        "support_calls": 0.0,
+        "data_usage_gb": 263.5,
+        "age": 73.9,
+        "num_services": 3.0
+      },
+      "churn_probability": 0.248,
+      "predicted_churn": false,
+      "actual_churn": false
+    },
+    {
+      "customer": "C-1398",
+      "features": {
+        "tenure_months": 3.2,
+        "monthly_charges": 48.5,
+        "total_charges": 165.5,
+        "contract_months": 24.0,
+        "support_calls": 10.0,
+        "data_usage_gb": 80.0,
+        "age": 67.1,
+        "num_services": 1.0
+      },
+      "churn_probability": 0.991,
+      "predicted_churn": true,
+      "actual_churn": true
+    },
+    {
+      "customer": "C-1010",
+      "features": {
+        "tenure_months": 45.1,
+        "monthly_charges": 52.8,
+        "total_charges": 2601.6,
+        "contract_months": 24.0,
+        "support_calls": 10.0,
+        "data_usage_gb": 236.3,
+        "age": 33.3,
+        "num_services": 3.0
+      },
+      "churn_probability": 0.05,
+      "predicted_churn": false,
+      "actual_churn": true
+    },
+    {
+      "customer": "C-1184",
+      "features": {
+        "tenure_months": 69.3,
+        "monthly_charges": 43.8,
+        "total_charges": 2975.2,
+        "contract_months": 24.0,
+        "support_calls": 10.0,
+        "data_usage_gb": 69.8,
+        "age": 75.8,
+        "num_services": 5.0
+      },
+      "churn_probability": 0.395,
+      "predicted_churn": false,
+      "actual_churn": false
+    },
+    {
+      "customer": "C-1316",
+      "features": {
+        "tenure_months": 30.1,
+        "monthly_charges": 29.5,
+        "total_charges": 796.4,
+        "contract_months": 24.0,
+        "support_calls": 6.0,
+        "data_usage_gb": 311.7,
+        "age": 64.2,
+        "num_services": 3.0
+      },
+      "churn_probability": 0.019,
+      "predicted_churn": false,
+      "actual_churn": true
+    },
+    {
+      "customer": "C-1331",
+      "features": {
+        "tenure_months": 42.4,
+        "monthly_charges": 30.6,
+        "total_charges": 1149.0,
+        "contract_months": 24.0,
+        "support_calls": 10.0,
+        "data_usage_gb": 434.2,
+        "age": 69.3,
+        "num_services": 3.0
+      },
+      "churn_probability": 0.0,
+      "predicted_churn": false,
+      "actual_churn": false
+    },
+    {
+      "customer": "C-1143",
+      "features": {
+        "tenure_months": 9.4,
+        "monthly_charges": 31.4,
+        "total_charges": 330.7,
+        "contract_months": 12.0,
+        "support_calls": 6.0,
+        "data_usage_gb": 266.7,
+        "age": 70.8,
+        "num_services": 3.0
+      },
+      "churn_probability": 0.484,
+      "predicted_churn": false,
+      "actual_churn": false
+    },
+    {
+      "customer": "C-1031",
+      "features": {
+        "tenure_months": 32.0,
+        "monthly_charges": 101.6,
+        "total_charges": 3115.6,
+        "contract_months": 1.0,
+        "support_calls": 4.0,
+        "data_usage_gb": 151.8,
+        "age": 59.2,
+        "num_services": 2.0
+      },
+      "churn_probability": 0.458,
+      "predicted_churn": false,
+      "actual_churn": true
+    },
+    {
+      "customer": "C-1069",
+      "features": {
+        "tenure_months": 56.0,
+        "monthly_charges": 107.7,
+        "total_charges": 6549.5,
+        "contract_months": 1.0,
+        "support_calls": 4.0,
+        "data_usage_gb": 404.2,
+        "age": 76.0,
+        "num_services": 1.0
+      },
+      "churn_probability": 0.028,
+      "predicted_churn": false,
+      "actual_churn": false
+    },
+    {
+      "customer": "C-1146",
+      "features": {
+        "tenure_months": 43.2,
+        "monthly_charges": 86.0,
+        "total_charges": 3472.5,
+        "contract_months": 24.0,
+        "support_calls": 3.0,
+        "data_usage_gb": 464.9,
+        "age": 24.7,
+        "num_services": 3.0
+      },
+      "churn_probability": 0.016,
+      "predicted_churn": false,
+      "actual_churn": false
+    },
+    {
+      "customer": "C-1141",
+      "features": {
+        "tenure_months": 47.5,
+        "monthly_charges": 51.4,
+        "total_charges": 2557.8,
+        "contract_months": 12.0,
+        "support_calls": 0.0,
+        "data_usage_gb": 50.2,
+        "age": 62.8,
+        "num_services": 2.0
+      },
+      "churn_probability": 0.026,
+      "predicted_churn": false,
+      "actual_churn": false
+    },
+    {
+      "customer": "C-1255",
+      "features": {
+        "tenure_months": 55.5,
+        "monthly_charges": 103.2,
+        "total_charges": 5309.9,
+        "contract_months": 12.0,
+        "support_calls": 5.0,
+        "data_usage_gb": 22.6,
+        "age": 48.2,
+        "num_services": 5.0
+      },
+      "churn_probability": 0.138,
+      "predicted_churn": false,
+      "actual_churn": true
+    }
+  ],
+  "n_train": 1600,
+  "n_test": 400,
+  "churn_rate": 0.3
+}
